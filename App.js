@@ -7,7 +7,7 @@ export default function App() {
   const [password, setPassword] = useState();
 
   return (
-    <ImageBackground source={require('./images/Background_Image.png')} style={{height: '100%'}} >
+    <ImageBackground source={require('./assets/images/Background_Image.png')} style={{height: '100%'}} >
       <View style={styles.firstContainer} >
         <Text style={styles.logo}>ioasys</Text>
         <Text style={styles.title}>Books</Text>
