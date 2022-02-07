@@ -1,112 +1,52 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React, {useState} from "react";
+import { ImageBackground, TextInput, StyleSheet, Text, View } from "react-native";
 
-import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+export default function App() {
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  const [text, setText] = useState()
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <ImageBackground source={require('./images/Background_Image.png')} style={styles.image}>
+      <View style={styles.container}>
+        <Text style={styles.logo}>ioasys</Text>
+        <Text style={styles.title}>Books</Text>
+      </View>
+      <View style={styles.inputContainer}>
+        <TextInput style={styles.input} />
+        <TextInput placeholder='Email' placeholderTextColor={'white'} value={text} onChangeText={text => setText(text)} style={styles.input} />
+      </View>
+    </ImageBackground>
   );
-};
+}
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+const styles = StyleSheet.create ({
+  image: {
+    
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  container: {
+    flexDirection: 'row'
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  logo: {
+    fontSize: 50,
+    color: '#FFFFFF',
+    margin: 10
   },
-  highlight: {
-    fontWeight: '700',
+  title: {
+    fontFamily: 'Heebo',
+    fontStyle: 'normal',
+    fontSize: 40,
+    color: '#FFFFFF',
+    margin: 10
   },
+  input: {
+    width: 288,
+    height: 60,
+    backgroundColor: 'rgba(0, 0, 0, 0.32)',
+    borderRadius: 4,
+    left: '20%',
+    color: 'white'
+  },
+  inputContainer: {
+    justifyContent: 'center'
+  }
 });
-
-export default App;
