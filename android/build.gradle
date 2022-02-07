@@ -1,0 +1,59 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext {
+        buildToolsVersion = "30.0.2"
+        minSdkVersion = 21
+        compileSdkVersion = 30
+        targetSdkVersion = 30
+        ndkVersion = "21.4.7075529"
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:4.2.2")
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        maven {
+            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+            url("$rootDir/../node_modules/react-native/android")
+        }
+        maven {
+            // Android JSC is installed from npm
+            url("$rootDir/../node_modules/jsc-android/dist")
+        }
+        mavenCentral {
+            // We don't want to fetch react-native from Maven Central as there are
+            // older versions over there.
+            content {
+                excludeGroup "com.facebook.react"
+            }
+        }
+        google()
+        maven { url 'https://www.jitpack.io' }
+    }
+}
+
+// in below line we are adding configurations to to our project.
+configurations.all {
+    // in below line we are adding strategy for each dependency and requesting the details 
+    resolutionStrategy.eachDependency {DependencyResolveDetails details ->
+        // on below line we are getting to see the details using requested. 
+        def requested = details.requested
+        // in below line we are requesting a group. 
+        if (requested.group == 'com.android.support'){
+            // on below line we are checking if the request is a group and checking if it starts with com.android.support.
+            if(!requested.name.startsWith("multidex")){
+                // if the requested name starts with multi dex then we are displaying the use version which is given below. 
+                details.useVersion '25.3.0'
+            }
+        }
+    }
+} 
