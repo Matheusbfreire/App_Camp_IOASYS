@@ -3,8 +3,8 @@ import { ImageBackground, TouchableOpacity, TextInput, StyleSheet, Text, View } 
 
 export default function App() {
 
-  const [text, setText] = useState();
-  const [password, setPassword] = useState();
+  const [text, setText] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <ImageBackground source={require('./assets/images/Background_Image.png')} style={{height: '100%'}} >
